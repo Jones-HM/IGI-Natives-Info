@@ -1,5 +1,5 @@
 # Project IGI-Natives-Info
-This is a C# GUI application for Visual Studio that allows you to find information about the natives of the game IGI using a collection of natives from a provided JSON file. The program displays how the method works, the address of the method, and the version (v 1.0).
+This is a tool that allows you to find information about the natives of the game [Project-IGI](https://en.wikipedia.org/wiki/Project_I.G.I.) using a collection of natives from a provided JSON file. The program displays how the native method works, and address of the method.
 
 ## Getting Started
 These instructions will help you set up and run the project on your local machine.
