@@ -8,26 +8,41 @@ namespace MethodSignatureFinder
 {
     public partial class IGINativesForm : Form
     {
+        string jsonNatives;
+        dynamic jsonData;
+
         public IGINativesForm()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            // Add a vertical scrollbar to the TextBox
-            txtOutput.ScrollBars = ScrollBars.Vertical;
-            // Automatically adjust the size of the TextBox to fit the text
-            //txtOutput.AutoSize = true;
+                // Add a vertical scrollbar to the TextBox
+                txtOutput.ScrollBars = ScrollBars.Vertical;
+
+                // Read JSON file
+                jsonNatives = File.ReadAllText(@"IGI-Natives.json");
+
+                // Parse JSON into dynamic object
+                jsonData = JObject.Parse(jsonNatives);
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show("Exception occurred:" + exception.Message, "EXCEPTION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            }
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            // Read JSON file
-            string json = File.ReadAllText(@"IGI-Natives.json");
-
-            // Parse JSON into dynamic object
-            dynamic jsonData = JObject.Parse(json);
-
             // Get user input method name
             string methodName = txtMethodName.Text.ToLower();
+
+            if (String.IsNullOrEmpty(methodName))
+            {
+                MessageBox.Show("Input field cannot be empty", "ERROR", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
 
             // Initialize variable to store output
             string output = "";
@@ -53,6 +68,12 @@ namespace MethodSignatureFinder
             // Get user input method name
             string methodName = txtMethodName.Text;
 
+            if (String.IsNullOrEmpty(txtOutput.Text))
+            {
+                MessageBox.Show("Output text is empty,\nNo natives were generated yet.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Create file name
             string fileName = "IGI-Natives-" + methodName + ".txt";
 
@@ -63,25 +84,23 @@ namespace MethodSignatureFinder
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            // Read JSON file
-            string json = File.ReadAllText(@"IGI-Natives.json");
 
             // Deserialize JSON to dynamic object
-            dynamic jsonData = JsonConvert.DeserializeObject<dynamic>(json);
+            dynamic jsonData = JsonConvert.DeserializeObject<dynamic>(jsonNatives);
 
             // Initialize CSV file
-            string csv = "name,address,signature,note\n";
+            string csvData = "name,address,signature,note\n";
 
             // Loop through "Natives" array in JSON
             foreach (var native in jsonData.Natives)
             {
                 // Add current "Native" object's properties to CSV file
-                csv += native.Native.name + "," + native.Native.hash + "," + native.Native.signature + "," + native.Native.note + "\n";
+                csvData += native.Native.name + "," + native.Native.hash + "," + native.Native.signature + "," + native.Native.note + "\n";
             }
 
             // Save CSV file
-            File.WriteAllText("IGI-Natives-CSV.csv", csv);
-            MessageBox.Show("Data saved to IGI-Natives-CSV.csv","Info");
+            File.WriteAllText("IGI-Natives-CSV.csv", csvData);
+            MessageBox.Show("Data saved to IGI-Natives-CSV.csv","INFO");
         }
     }
 }
