@@ -11,6 +11,11 @@ namespace MethodSignatureFinder
         public IGINativesForm()
         {
             InitializeComponent();
+
+            // Add a vertical scrollbar to the TextBox
+            txtOutput.ScrollBars = ScrollBars.Vertical;
+            // Automatically adjust the size of the TextBox to fit the text
+            //txtOutput.AutoSize = true;
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -34,12 +39,12 @@ namespace MethodSignatureFinder
                 if (native.Native.name.ToString().ToLower().Contains(methodName))
                 {
                     // Add signature and hash to output
-                    output += "Method Name: " + native.Native.name + "\nSignature: " + native.Native.signature + "\nHash: " + native.Native.hash + "\n\n";
+                    output += "Method Name: " + native.Native.name + Environment.NewLine + "Signature: " + native.Native.signature + Environment.NewLine  + "Address: " + native.Native.hash + Environment.NewLine + Environment.NewLine;
                 }
             }
 
             // Display output in label
-            lblOutput.Text = output;
+            txtOutput.Text = output;
         }
 
 
@@ -52,7 +57,7 @@ namespace MethodSignatureFinder
             string fileName = "IGI-Natives-" + methodName + ".txt";
 
             // Write output to file
-            File.WriteAllText(fileName, lblOutput.Text);
+            File.WriteAllText(fileName, txtOutput.Text);
             MessageBox.Show("Data saved to " + fileName,"Info");
         }
 
