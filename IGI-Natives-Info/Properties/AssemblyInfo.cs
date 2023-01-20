@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("IGI-Natives-Info")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("IGI-Natives-Info is game natives searcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("IGI-Research Devs")]
 [assembly: AssemblyProduct("IGI-Natives-Info")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Copyright @ HM Haseeb Mir")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

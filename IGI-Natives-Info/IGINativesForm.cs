@@ -11,7 +11,6 @@ namespace MethodSignatureFinder
         public IGINativesForm()
         {
             InitializeComponent();
-            this.MaximizeBox = false;
         }
 
         private void btnFind_Click(object sender, EventArgs e)

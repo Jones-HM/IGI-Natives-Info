@@ -29,6 +29,7 @@ namespace MethodSignatureFinder
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IGINativesForm));
             this.txtMethodName = new System.Windows.Forms.TextBox();
             this.methodLabel = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
@@ -65,7 +66,7 @@ namespace MethodSignatureFinder
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(269, 589);
+            this.btnSave.Location = new System.Drawing.Point(292, 589);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(228, 56);
             this.btnSave.TabIndex = 2;
@@ -76,11 +77,11 @@ namespace MethodSignatureFinder
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(66, 167);
+            this.lblOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOutput.Location = new System.Drawing.Point(66, 166);
             this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(76, 25);
+            this.lblOutput.Size = new System.Drawing.Size(0, 31);
             this.lblOutput.TabIndex = 1;
-            this.lblOutput.Text = "Output";
             // 
             // btnConvert
             // 
@@ -103,6 +104,8 @@ namespace MethodSignatureFinder
             this.Controls.Add(this.lblOutput);
             this.Controls.Add(this.methodLabel);
             this.Controls.Add(this.txtMethodName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IGINativesForm";
             this.Text = "Project IGI - Natives Info";
             this.ResumeLayout(false);
